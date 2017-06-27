@@ -43,7 +43,12 @@ RUN TORCH_CUDA_ARCH_LIST="3.5 5.2 6.0 6.1+PTX" TORCH_NVCC_FLAGS="-Xfatbin -compr
     CMAKE_PREFIX_PATH="$(dirname $(which conda))/../" \
     pip install -v .
 
-RUN conda install --name pytorch-py36 -c soumith torchvision
+# Install torchvision from source
+RUN git clone https://github.com/pytorch/vision /opt/torchvision &&\
+    cd /opt/torchvision && \
+    pip install -v .
+
+RUN conda install --name pytorch-py36 pandas matplotlib jupyter
 
 WORKDIR /workspace
 RUN chmod -R a+w /workspace
