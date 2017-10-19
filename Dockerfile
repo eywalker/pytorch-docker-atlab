@@ -1,6 +1,9 @@
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 LABEL maintainer="Edgar Y. Walker <edgar.walker@gmail.com>"
 
+# Deal with pesky Python 3 encoding issue
+ENV LANG C.UTF-8
+
 # Install essential Ubuntu packages
 # and upgrade pip
 RUN apt-get update &&\
