@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+FROM nvidia/cuda:9.1-cudnn7-devel-ubuntu16.04
 LABEL maintainer="Edgar Y. Walker <edgar.walker@gmail.com>"
 
 # Deal with pesky Python 3 encoding issue
@@ -47,9 +47,10 @@ RUN pip3 --no-cache-dir install \
          graphviz \
          gpustat \
          h5py \
-         http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp35-cp35m-linux_x86_64.whl \
+         http://download.pytorch.org/whl/cu91/torch-0.3.1-cp35-cp35m-linux_x86_64.whl \
          torchvision \
-         datajoint 
+         git+https://github.com/datajoint/datajoint-python \
+         jupyterlab
 
 # Add profiling library support
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:${LD_LIBRARY_PATH}
